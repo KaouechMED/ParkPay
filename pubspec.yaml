@@ -1,0 +1,35 @@
+name: parkpay
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.2  # Updated the version number to 1.0.2
+
+environment:
+  sdk: '>=3.1.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/6.png
+    - assets/1.png
+    - assets/5.png
+    - assets/2.png
+    - assets/3.png
+    - assets/1.png
+    - assets/4.png
+    - assets/7.png
+    - assets/8.png
+    - assets/9.png
+    - assets/10.png
+
+
