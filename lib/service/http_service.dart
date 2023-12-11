@@ -5,7 +5,7 @@ import 'package:parkpay/views/DashboardPage.dart';
 import 'package:parkpay/views/HomePage.dart';
 
 class HttpService {
-  static const String baseUrl = "http://127.0.0.1:5000";
+  static const String baseUrl = "http://10.0.2.2:5000";
 
   static Future<void> login(String username, String password, context) async {
     try {
@@ -20,7 +20,7 @@ class HttpService {
         }),
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => DashboardPage()),
@@ -31,10 +31,10 @@ class HttpService {
 
   static Future<void> register(
     String username,
-    String emailAddress,
+    String email_address,
     String cin,
     String password,
-    String passwordConfirm,
+    String password_confirm,
     context,
   ) async {
     try {
@@ -45,10 +45,10 @@ class HttpService {
         },
         body: jsonEncode(<String, String>{
           'username': username,
-          'emailAddress': emailAddress,
+          'email_address': email_address,
           'cin': cin,
           'password': password,
-          'passwordConfirm': passwordConfirm,
+          'password_confirm': password_confirm,
         }),
       );
 

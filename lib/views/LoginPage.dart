@@ -7,7 +7,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late String nom;
+  late String username;
   late String password;
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // Text fields and other widgets follow
                 TextField(
                   decoration: InputDecoration(
-                    hintText: 'Nom',
+                    hintText: 'username',
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -48,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   onChanged: (value) {
                     setState(() {
-                      nom = value;
+                      username = value;
                     });
                   },
                 ),
@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: () async {
                     try {
-                      await HttpService.login(nom, password, context);
+                      await HttpService.login(username, password, context);
                     } catch (e) {}
                   },
                   child: Container(
