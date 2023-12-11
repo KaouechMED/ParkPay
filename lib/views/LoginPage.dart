@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'DashboardPage.dart';
+import 'package:parkpay/service/http_service.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -7,6 +7,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late String nom;
+  late String password;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -32,62 +34,75 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 40 * scale),
                 // Text fields and other widgets follow
-                _buildTextField(hint: "Nom d'utilisateur", scale: scale),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Nom',
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(30 * scale),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 15 * scale, horizontal: 20 * scale),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      nom = value;
+                    });
+                  },
+                ),
                 SizedBox(height: 16 * scale),
-                _buildTextField(
-                    hint: 'Mot de passe', scale: scale, obscureText: true),
-                SizedBox(height: 16 * scale),
+                TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: 'Mot de passe',
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(30 * scale),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 15 * scale, horizontal: 20 * scale),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      password = value;
+                    });
+                  },
+                ),
                 SizedBox(height: 20 * scale),
                 ElevatedButton(
-                  child: Text(
-                    'Se connecter',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13 * scale,
-
-                      // Add other styles like fontSize, fontFamily if necessary
+                  onPressed: () async {
+                    try {
+                      await HttpService.login(nom, password, context);
+                    } catch (e) {}
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 20 * scale),
+                    child: Center(
+                      child: Text(
+                        'Se connecter',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13 * scale,
+                        ),
+                      ),
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => DashboardPage()),
-                    );
-                  },
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xd30e73bc), // Replace with your color
-                    padding: EdgeInsets.symmetric(vertical: 20 * scale),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10 * scale),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required String hint,
-    required double scale,
-    bool obscureText = false,
-  }) {
-    return TextField(
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        hintText: hint,
-        filled: true,
-        fillColor: Colors.grey[200], // Use a light grey color
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(30 * scale), // Rounded corners
-        ),
-        contentPadding:
-            EdgeInsets.symmetric(vertical: 15 * scale, horizontal: 20 * scale),
       ),
     );
   }

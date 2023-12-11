@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parkpay/service/http_service.dart';
 import 'AcceptPage.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -7,6 +8,11 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  late String nom;
+  late String prenom;
+  late String cin;
+  late String password;
+  late String passwordConfirm;
   bool termsAccepted = false;
   void _navigateToAcceptTerms() async {
     // Navigate to AcceptTermsPage and wait for the result
@@ -48,27 +54,108 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   height: 100 * scale,
                 ),
                 SizedBox(height: 40 * scale),
-                // Text fields and other widgets follow
-                _buildTextField(hint: 'nom', scale: scale),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Nom',
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(30 * scale),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 15 * scale, horizontal: 20 * scale),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      nom = value;
+                    });
+                  },
+                ),
                 SizedBox(height: 16 * scale),
-                _buildTextField(hint: 'Prénom', scale: scale),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Prénom',
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(30 * scale),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 15 * scale, horizontal: 20 * scale),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      prenom = value;
+                    });
+                  },
+                ),
                 SizedBox(height: 16 * scale),
-                _buildTextField(hint: 'CIN', scale: scale),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'CIN',
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(30 * scale),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 15 * scale, horizontal: 20 * scale),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      cin = value;
+                    });
+                  },
+                ),
                 SizedBox(height: 16 * scale),
-                _buildTextField(
-                    hint: 'Mot de passe', scale: scale, obscureText: true),
+                TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: 'Mot de passe',
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(30 * scale),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 15 * scale, horizontal: 20 * scale),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      password = value;
+                    });
+                  },
+                ),
                 SizedBox(height: 16 * scale),
-                _buildTextField(
-                    hint: 'Confirmer mot de passe',
-                    scale: scale,
-                    obscureText: true),
+                TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: 'Confirmer mot de passe',
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(30 * scale),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 15 * scale, horizontal: 20 * scale),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      passwordConfirm = value;
+                    });
+                  },
+                ),
                 SizedBox(height: 16 * scale),
                 Row(
                   children: <Widget>[
                     Checkbox(
                       value: termsAccepted,
                       onChanged: (bool? value) {
-                        // Navigate to AcceptTermsPage when the checkbox is tapped
                         _navigateToAcceptTerms();
                       },
                     ),
@@ -89,52 +176,37 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
                 SizedBox(height: 20 * scale),
                 ElevatedButton(
-                  child: Text(
-                    'S\'inscrire',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13 * scale,
-
-                      // Add other styles like fontSize, fontFamily if necessary
+                  onPressed: () async {
+                    // Check if passwords match before registration
+                    if (password == passwordConfirm) {
+                      await HttpService.register(
+                          nom, prenom, cin, password, passwordConfirm, context);
+                    } else {}
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 20 * scale),
+                    child: Center(
+                      child: Text(
+                        'S\'inscrire',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13 * scale,
+                        ),
+                      ),
                     ),
                   ),
-                  onPressed: () {
-                    // Handle sign up action
-                  },
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xd30e73bc), // Replace with your color
-                    padding: EdgeInsets.symmetric(vertical: 20 * scale),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10 * scale),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required String hint,
-    required double scale,
-    bool obscureText = false,
-  }) {
-    return TextField(
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        hintText: hint,
-        filled: true,
-        fillColor: Colors.grey[200], // Use a light grey color
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(30 * scale), // Rounded corners
-        ),
-        contentPadding:
-            EdgeInsets.symmetric(vertical: 15 * scale, horizontal: 20 * scale),
       ),
     );
   }
