@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:parkpay/views/HomePage.dart';
+import '/views/HomePage.dart';
 import 'MesvoituresPage.dart';
 import 'SoldePage.dart';
 import 'PositionPage.dart';
@@ -14,7 +14,6 @@ class DashboardPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          // This Row contains your two images at the top of the screen
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -85,11 +84,11 @@ class DashboardPage extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            "Mes Voitures",
+                            "Mes voitures",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize:
-                                  18 * scale, // Scale font size based on fem
+                                  14 * scale, // Scale font size based on fem
                               fontWeight: FontWeight.w400,
                               color: Color(0xffffffff),
                               fontFamily: 'Jomhuria',
@@ -128,7 +127,7 @@ class DashboardPage extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize:
-                                  18 * scale, // Scale font size based on fem
+                                  14 * scale, // Scale font size based on fem
                               fontWeight: FontWeight.w400,
                               color: Color(0xffffffff),
                               fontFamily: 'Jomhuria',
@@ -163,11 +162,11 @@ class DashboardPage extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            'Payer un frais de stationnement',
+                            'Payer',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize:
-                                  18 * scale, // Scale font size based on fem
+                                  14 * scale, // Scale font size based on fem
                               fontWeight: FontWeight.w400,
                               color: Color(0xffffffff),
                               fontFamily: 'Jomhuria',
@@ -201,11 +200,11 @@ class DashboardPage extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            'déconnexion',
+                            'Déconnexion',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize:
-                                  18 * scale, // Scale font size based on fem
+                                  14 * scale, // Scale font size based on fem
                               fontWeight: FontWeight.w400,
                               color: Color(0xffffffff),
                               fontFamily: 'Jomhuria',

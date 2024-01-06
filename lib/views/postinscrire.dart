@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'LanguageSelectionPage.dart';
+import 'DashboardPage.dart';
 
-class LoadingPage extends StatefulWidget {
-  const LoadingPage({Key? key}) : super(key: key);
+class postinscrirePage extends StatefulWidget {
   @override
-  _LoadingPageState createState() => _LoadingPageState();
+  _postPageState createState() => _postPageState();
 }
 
-class _LoadingPageState extends State<LoadingPage> {
+class _postPageState extends State<postinscrirePage> {
   @override
   void initState() {
     super.initState();
-    _navigatetohome();
-  }
-
-  _navigatetohome() async {
-    await Future.delayed(Duration(milliseconds: 3000), () {});
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => LanguageSelectionPage()));
+    Future.delayed(Duration(milliseconds: 1200), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => DashboardPage()),
+      );
+    });
   }
 
   @override

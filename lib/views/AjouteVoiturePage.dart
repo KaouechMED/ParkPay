@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'DashboardPage.dart';
+import 'MesvoituresPage.dart';
+import 'checkpaimentPage.dart';
 
-class AjouteVoiturePage extends StatelessWidget {
-  final TextEditingController voitureController = TextEditingController();
+class AjouteVoiturePage extends StatefulWidget {
+  @override
+  _AjouteVoiturePageState createState() => _AjouteVoiturePageState();
+}
+
+class _AjouteVoiturePageState extends State<AjouteVoiturePage> {
+  late String nom_voiture;
+  late String leftnumber;
+  late String rightnumber;
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -56,7 +66,25 @@ class AjouteVoiturePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    _buildTextField(hint: 'Nom de voiture', scale: scale),
+                    TextField(
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        hintText: 'Nom du voiture',
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(30 * scale),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 15 * scale, horizontal: 20 * scale),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          nom_voiture = value;
+                        });
+                      },
+                    ),
                     SizedBox(height: 16 * scale),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -66,6 +94,11 @@ class AjouteVoiturePage extends StatelessWidget {
                             padding: EdgeInsets.all(8.0),
                             child: TextField(
                               decoration: InputDecoration(),
+                              onChanged: (value) {
+                                setState(() {
+                                  leftnumber = value;
+                                });
+                              },
                             ),
                           ),
                         ),
@@ -80,31 +113,66 @@ class AjouteVoiturePage extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.all(8.0),
                             child: TextField(
-                              decoration: InputDecoration(
-                                  ),
+                              decoration: InputDecoration(),
+                              onChanged: (value) {
+                                setState(() {
+                                  rightnumber = value;
+                                });
+                              },
                             ),
                           ),
                         ),
                       ],
                     ),
                     SizedBox(height: 50 * scale),
-                    ElevatedButton(
-                      child: Text(
-                        'Ajouter',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13 * scale,
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          66 * scale, 0 * scale, 85 * scale, 40 * scale),
+                      width: double.infinity,
+                      height: 42 * scale,
+                      decoration: BoxDecoration(
+                        color: Color(0xd30e73bc),
+                        borderRadius: BorderRadius.circular(15 * scale),
+                      ),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CheckPage()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.all(0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15 * scale),
+                          ),
+                          primary: Color(0xd30e73bc),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Ajouter",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14 *
+                                  scale, // Échelle de la taille de la police en fonction de fem
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xffffffff),
+                              fontFamily: 'Jomhuria',
+                            ),
+                          ),
                         ),
                       ),
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xd30e73bc),
-                        padding: EdgeInsets.symmetric(vertical: 20 * scale),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10 * scale),
-                        ),
-                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => VoiturePage()),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -115,25 +183,4 @@ class AjouteVoiturePage extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget _buildTextField({
-  required String hint,
-  required double scale,
-  bool obscureText = false,
-}) {
-  return TextField(
-    obscureText: obscureText,
-    decoration: InputDecoration(
-      hintText: hint,
-      filled: true,
-      fillColor: Colors.grey[200],
-      border: OutlineInputBorder(
-        borderSide: BorderSide.none,
-        borderRadius: BorderRadius.circular(30 * scale),
-      ),
-      contentPadding:
-          EdgeInsets.symmetric(vertical: 15 * scale, horizontal: 20 * scale),
-    ),
-  );
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'RegisterPage.dart';
 import 'LoginPage.dart';
+import 'AcceptPage.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
               // Ellipse container
               Container(
                 width: screenWidth * 0.8, // 80% of screen width
-                height: 200 * scale, // Fixed height to maintain ellipse shape
+                height: 220 * scale, // Fixed height to maintain ellipse shape
                 decoration: BoxDecoration(
                   color: Colors.blue.shade100, // Light blue background color
                   borderRadius:
@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
                       'Payer Vos frais de Stationnement de manière pratique',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 15 * scale, // Adjust the font size as needed
+                        fontSize: 12 * scale, // Adjust the font size as needed
                         color: Colors.black,
                       ),
                     ),
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                  height: 40 *
+                  height: 30 *
                       scale), // Spacing between the slogan container and the buttons
 
               Container(
@@ -72,8 +72,7 @@ class HomePage extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => RegistrationScreen()),
+                      MaterialPageRoute(builder: (context) => AcceptPage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -88,7 +87,7 @@ class HomePage extends StatelessWidget {
                       'Créer un compte',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 18 * scale, // Scale font size based on fem
+                        fontSize: 14 * scale, // Scale font size based on fem
                         fontWeight: FontWeight.w400,
                         color: Color(0xffffffff),
                         fontFamily: 'Jomhuria',
@@ -125,7 +124,7 @@ class HomePage extends StatelessWidget {
                       'Connexion',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 18 * scale, // Scale font size based on screen
+                        fontSize: 14 * scale, // Scale font size based on screen
                         fontWeight: FontWeight.w400,
                         color: Color(0xffffffff),
                         fontFamily: 'Jomhuria',

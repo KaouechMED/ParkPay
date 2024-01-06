@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:parkpay/service/http_service.dart';
-import 'HomePage.dart';
+import 'LoginPage.dart';
 
-class LoginScreen extends StatefulWidget {
+class VerifyOTPScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _VerifyOTPScreenState createState() => _VerifyOTPScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  late String username;
-  late String password;
+class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
+  late String otpcode;
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -26,19 +26,28 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 20 * scale),
+                SizedBox(height: 40 * scale),
                 // Replace with your actual logo asset
 
                 Image.asset(
-                  'assets/6.png',
+                  'assets/2.png',
                   width: 100 * scale,
                   height: 100 * scale,
                 ),
                 SizedBox(height: 40 * scale),
                 // Text fields and other widgets follow
+                Text(
+                  "Nous avons envoyé un code de vérification à votre numéro du téléphone",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(height: 40 * scale),
                 TextField(
                   decoration: InputDecoration(
-                    hintText: "nom d'utilisateur",
+                    hintText: 'Code de verification',
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -50,31 +59,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   onChanged: (value) {
                     setState(() {
-                      username = value;
+                      otpcode = value;
                     });
                   },
                 ),
-                SizedBox(height: 16 * scale),
-                TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    hintText: 'Mot de passe',
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(30 * scale),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                        vertical: 15 * scale, horizontal: 20 * scale),
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      password = value;
-                    });
-                  },
-                ),
-                SizedBox(height: 45 * scale),
+                SizedBox(height: 40 * scale),
                 Container(
                   margin: EdgeInsets.fromLTRB(
                       66 * scale, 0 * scale, 85 * scale, 40 * scale),
@@ -88,9 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: ElevatedButton(
                     onPressed: () async {
-                      try {
-                        await HttpService.login(username, password, context);
-                      } catch (e) {}
+                      await HttpService.verifyotp(otpcode, context);
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.all(0),
@@ -101,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        "Se connecter",
+                        "Verifier",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 14 * scale, // Adjusted font size
@@ -118,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   },
                 ),

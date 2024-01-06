@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-//import 'RegisterPage.dart';
+import 'RegisterPage.dart';
+import 'HomePage.dart';
 
 class AcceptPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double referenceWidth =
-        360.0; // Adjust this value based on your design system
+        360.0; // Ajustez cette valeur en fonction de votre système de conception
     double fem = screenWidth / referenceWidth;
 
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          // Allows for scrolling if content doesn't fit on the screen
+          // Permet le défilement si le contenu ne rentre pas à l'écran
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -25,85 +26,35 @@ class AcceptPage extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(
-                    20 * fem), // Add margin around the text container
-                padding: EdgeInsets.all(
-                    10 * fem), // Add padding inside the container
-                child: Text(
-                  "Dans le contexte de la gestion des problèmes de stationnement dans la ville de Tunis, et pour garantir la fluidité de la circulation, la municipalité de Tunis a créé des zones appelées les zones bleues équipées d'installations modernes telles que des distributeurs de tickets pour réguler le processus de stationnement.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16 * fem, // Adjust the font size as needed
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              Container(
-                margin:
-                    EdgeInsets.fromLTRB(66 * fem, 30 * fem, 85 * fem, 40 * fem),
-                width: double.infinity,
-                height: 50 * fem,
-                decoration: BoxDecoration(
-                  color: Color(0xd30e73bc),
-                  borderRadius: BorderRadius.circular(15 * fem),
-                ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Implement language selection logic for Français
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15 * fem),
-                    ),
-                    primary: Colors.blue.shade100,
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Les zones équipées de distributeurs de tickets",
+                margin: EdgeInsets.all(20 * fem),
+                padding: EdgeInsets.all(10 * fem),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment
+                      .center, // Centre les enfants verticalement dans la colonne
+                  children: <Widget>[
+                    Text(
+                      "Bienvenue sur ParkPay,",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 13 * fem, // Scale font size based on fem
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xd30e73bc),
-                        fontFamily: 'Jomhuria',
+                        fontSize: 16 * fem,
+                        color: Colors.black,
                       ),
                     ),
-                  ),
-                ),
-              ),
-              Container(
-                margin:
-                    EdgeInsets.fromLTRB(66 * fem, 0 * fem, 85 * fem, 40 * fem),
-                width: double.infinity,
-                height: 50 * fem,
-                decoration: BoxDecoration(
-                  color: Color(0xd30e73bc),
-                  borderRadius: BorderRadius.circular(15 * fem),
-                ),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15 * fem),
-                    ),
-                    primary: Colors.blue.shade100,
-                  ),
-                  child: Center(
-                    child: Text(
-                      "L'importance des zones bleues dans la régulation du stationnement",
+                    SizedBox(
+                        height:
+                            8 * fem), // Add space between paragraphs if needed
+                    Text(
+                      "Dans le contexte de la gestion des problèmes de stationnement dans la ville de Tunis, ParkPay offre une solution pratique pour payer les frais de stationnement et garantir la fluidité de la circulation.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 13 * fem, // Scale font size based on fem
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xd30e73bc),
-                        fontFamily: 'Jomhuria',
+                        fontSize: 12 * fem,
+                        color: Colors.black,
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ),
+              SizedBox(height: 15),
               Container(
                 margin:
                     EdgeInsets.fromLTRB(66 * fem, 0 * fem, 85 * fem, 40 * fem),
@@ -115,12 +66,11 @@ class AcceptPage extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    //Navigator.pushReplacement(
-                    //context,
-                    //MaterialPageRoute(
-                    //  builder: (context) => RegistrationScreen()),
-                    //);
-                    Navigator.of(context).pop(true);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RegistrationScreen()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.all(0),
@@ -131,10 +81,11 @@ class AcceptPage extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      "J’accepte les termes",
+                      "Continuer",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 18 * fem, // Scale font size based on fem
+                        fontSize: 14 *
+                            fem, // Échelle de la taille de la police en fonction de fem
                         fontWeight: FontWeight.w400,
                         color: Color(0xffffffff),
                         fontFamily: 'Jomhuria',
@@ -142,6 +93,15 @@ class AcceptPage extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                },
               ),
             ],
           ),

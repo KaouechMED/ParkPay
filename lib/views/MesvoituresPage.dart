@@ -48,62 +48,71 @@ class VoiturePage extends StatelessWidget {
               ),
             ],
           ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: 20 * scale), // Adjust the top padding as needed
+              child: Text(
+                'Mes Voitures',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 20 * scale,
+                  fontWeight: FontWeight.w600,
+                  height: 1.2125 * scale,
+                  color: Color(0xd30e73bc),
+                ),
+              ),
+            ),
+          ),
           Expanded(
             child: Center(
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      'Mes Voitures',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 20 * scale,
-                        fontWeight: FontWeight.w600,
-                        height: 1.2125 * scale,
-                        color: Color(0xd30e73bc),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(
-                          66 * scale, 30 * scale, 85 * scale, 40 * scale),
-                      width: double.infinity,
-                      height: 43 * scale,
-                      decoration: BoxDecoration(
-                        color: Color(0xd30e73bc),
-                        borderRadius: BorderRadius.circular(15 * scale),
-                      ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AjouteVoiturePage()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.all(0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15 * scale),
-                          ),
-                          primary: Color(0xd30e73bc),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Ajouter une voiture",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 18 * scale,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xffffffff),
-                              fontFamily: 'Jomhuria',
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Your content above the butt
+                    //
+                    // on
                   ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(
+                66 * scale, 0 * scale, 85 * scale, 40 * scale),
+            width: double.infinity,
+            height: 42 * scale,
+            decoration: BoxDecoration(
+              color: Color(0xd30e73bc),
+              borderRadius: BorderRadius.circular(15 * scale),
+            ),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => AjouteVoiturePage()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.all(0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15 * scale),
+                ),
+                primary: Color(0xd30e73bc),
+              ),
+              child: Center(
+                child: Text(
+                  "Ajouter une voiture",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14 * scale,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xffffffff),
+                    fontFamily: 'Jomhuria',
+                  ),
                 ),
               ),
             ),

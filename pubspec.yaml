@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   http: ^0.13.4
+  camera: ^0.10.5+7
+  pin_code_fields: ^7.2.0
 
 
   
@@ -34,5 +36,8 @@ flutter:
     - assets/8.png
     - assets/9.png
     - assets/10.png
+    - assets/logo.png
+    - assets/icon.png
+
 
 

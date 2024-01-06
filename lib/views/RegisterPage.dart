@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:parkpay/service/http_service.dart';
-import 'AcceptPage.dart';
+import 'HomePage.dart';
+import '/service/http_service.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -8,27 +8,11 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  late String nom;
-  late String prenom;
+  late String username;
+  late String phone_number;
   late String cin;
   late String password;
   late String passwordConfirm;
-  bool termsAccepted = false;
-  void _navigateToAcceptTerms() async {
-    // Navigate to AcceptTermsPage and wait for the result
-    bool? result = await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => AcceptPage(),
-      ),
-    );
-
-    // When returning from AcceptTermsPage, if the result is true, set the checkbox as checked
-    if (result != null && result) {
-      setState(() {
-        termsAccepted = true;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +40,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 SizedBox(height: 40 * scale),
                 TextField(
                   decoration: InputDecoration(
-                    hintText: 'Nom',
+                    hintText: "Nom d'utilisateur",
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -68,14 +52,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   onChanged: (value) {
                     setState(() {
-                      nom = value;
+                      username = value;
                     });
                   },
                 ),
                 SizedBox(height: 16 * scale),
                 TextField(
                   decoration: InputDecoration(
-                    hintText: 'Prénom',
+                    hintText: 'Numéro de téléphone',
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -87,7 +71,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   onChanged: (value) {
                     setState(() {
-                      prenom = value;
+                      phone_number = value;
                     });
                   },
                 ),
@@ -151,58 +135,57 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   },
                 ),
                 SizedBox(height: 16 * scale),
-                Row(
-                  children: <Widget>[
-                    Checkbox(
-                      value: termsAccepted,
-                      onChanged: (bool? value) {
-                        _navigateToAcceptTerms();
-                      },
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        // Navigate to AcceptTermsPage when the text is tapped
-                        _navigateToAcceptTerms();
-                      },
-                      child: Text(
-                        "J'accepte les termes et les conditions",
-                        style: TextStyle(
-                            // Your text style here
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
 
                 SizedBox(height: 20 * scale),
-                ElevatedButton(
-                  onPressed: () async {
-                    // Check if passwords match before registration
-                    if (password == passwordConfirm) {
-                      await HttpService.register(
-                          nom, prenom, cin, password, passwordConfirm, context);
-                    } else {}
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 20 * scale),
+                Container(
+                  margin: EdgeInsets.fromLTRB(
+                      66 * scale, 0 * scale, 85 * scale, 40 * scale),
+                  width: double.infinity,
+                  height: 42 * scale,
+                  decoration: BoxDecoration(
+                    color:
+                        Color(0xd30e73bc), // Background color of the container
+                    borderRadius:
+                        BorderRadius.circular(15 * scale), // Rounded corners
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      // Check if passwords match before registration
+                      if (password == passwordConfirm) {
+                        await HttpService.register(username, phone_number, cin,
+                            password, passwordConfirm, context);
+                      } else {}
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15 * scale),
+                      ),
+                      primary: Color(0xd30e73bc), // Button color
+                    ),
                     child: Center(
                       child: Text(
-                        'S\'inscrire',
+                        "S'inscrire",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13 * scale,
+                          fontSize: 14 * scale, // Adjusted font size
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xffffffff), // Text color (white)
+                          fontFamily: 'Jomhuria', // Font family
                         ),
                       ),
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Color(0xd30e73bc), // Replace with your color
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10 * scale),
-                    ),
-                  ),
-                )
+                ),
+                IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
+                  },
+                ),
               ],
             ),
           ),
