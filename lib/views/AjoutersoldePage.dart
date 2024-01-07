@@ -2,7 +2,21 @@ import 'package:flutter/material.dart';
 import 'AjouteVoiturePage.dart';
 import 'DashboardPage.dart';
 
-class VoiturePage extends StatelessWidget {
+class AjoutesoldePage extends StatefulWidget {
+  @override
+  _AjoutesoldeState createState() => _AjoutesoldeState();
+}
+
+class _AjoutesoldeState extends State<AjoutesoldePage> {
+  String selectedmethod = '';
+
+  // Function to handle the selection of a parking duration
+  void selectmethod(String method) {
+    setState(() {
+      selectedmethod = method;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -54,7 +68,7 @@ class VoiturePage extends StatelessWidget {
               padding: EdgeInsets.only(
                   top: 20 * scale), // Adjust the top padding as needed
               child: Text(
-                'Mes Voitures',
+                'Charger solde',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Inter',
@@ -72,6 +86,11 @@ class VoiturePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    Image.asset(
+                      'assets/pay.png',
+                    ),
+                    SizedBox(height: 30 * scale),
+
                     // Your content above the butt
                     Container(
                       margin: EdgeInsets.fromLTRB(
@@ -83,17 +102,21 @@ class VoiturePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15 * scale),
                       ),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          selectmethod('D17');
+                        },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.all(0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15 * scale),
                           ),
-                          primary: Color.fromARGB(210, 133, 193, 235),
+                          primary: selectedmethod == 'D17'
+                              ? Color(0xd30e73bc)
+                              : Color.fromARGB(210, 133, 193, 235),
                         ),
                         child: Center(
                           child: Text(
-                            '202 TN 1985',
+                            'D17',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize:
@@ -116,17 +139,21 @@ class VoiturePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15 * scale),
                       ),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          selectmethod('opérateur');
+                        },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.all(0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15 * scale),
                           ),
-                          primary: Color.fromARGB(210, 133, 193, 235),
+                          primary: selectedmethod == 'opérateur'
+                              ? Color(0xd30e73bc)
+                              : Color.fromARGB(210, 133, 193, 235),
                         ),
                         child: Center(
                           child: Text(
-                            '198 TN 2001',
+                            'opérateur',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize:
@@ -156,12 +183,7 @@ class VoiturePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(15 * scale),
             ),
             child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => AjouteVoiturePage()),
-                );
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
@@ -171,7 +193,7 @@ class VoiturePage extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  "Ajouter une voiture",
+                  "Charger",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14 * scale,

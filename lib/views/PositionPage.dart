@@ -65,15 +65,14 @@ class _PositionPageState extends State<PositionPage> {
           Positioned(
             left: 0 * scale,
             top: 0 * scale,
-            child: Align(
-              child: SizedBox(
-                width: 163 * scale,
-                height: 30 * scale,
-                child: Text(
-                  'Votre Position',
-                  textAlign: TextAlign.center,
-                  style: myTextStyle,
-                ),
+            child: Text(
+              "Votre position",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20 * scale,
+                fontWeight: FontWeight.w400,
+                color: Color(0xd30e73bc),
+                fontFamily: 'Jomhuria',
               ),
             ),
           ),
@@ -89,6 +88,12 @@ class _PositionPageState extends State<PositionPage> {
             ),
           ),
           SizedBox(height: 30 * scale),
+          Image.asset(
+            'assets/loca.png',
+            width: 774.0,
+            height: 256.0,
+          ),
+          SizedBox(height: 60 * scale),
           Container(
             margin: EdgeInsets.fromLTRB(
                 66 * scale, 0 * scale, 85 * scale, 40 * scale),
@@ -117,7 +122,7 @@ class _PositionPageState extends State<PositionPage> {
                   'Continuer',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 18 * scale, // Scale font size based on fem
+                    fontSize: 14 * scale, // Scale font size based on fem
                     fontWeight: FontWeight.w400,
                     color: Color(0xffffffff),
                     fontFamily: 'Jomhuria',

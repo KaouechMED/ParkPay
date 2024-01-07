@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'DashboardPage.dart';
+import 'AjoutersoldePage.dart';
 
 class SoldePage extends StatefulWidget {
   @override
@@ -97,7 +98,10 @@ class _SoldePageState extends State<SoldePage> {
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  balance++; // Increment the balance when button is pressed
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AjoutesoldePage()),
+                  ); // Increment the balance when button is pressed
                 });
               },
               style: ElevatedButton.styleFrom(
@@ -112,7 +116,7 @@ class _SoldePageState extends State<SoldePage> {
                   'Charger mon compte',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 18 * scale, // Scale font size based on fem
+                    fontSize: 14 * scale, // Scale font size based on fem
                     fontWeight: FontWeight.w400,
                     color: Color(0xffffffff),
                     fontFamily: 'Jomhuria',

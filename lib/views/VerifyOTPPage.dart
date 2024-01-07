@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:parkpay/service/http_service.dart';
+//import 'package:parkpay/service/http_service.dart';
+import 'package:parkpay/views/DashboardPage.dart';
 import 'LoginPage.dart';
 
 class VerifyOTPScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 40 * scale),
+                SizedBox(height: 120 * scale),
                 // Replace with your actual logo asset
 
                 Image.asset(
@@ -34,7 +35,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                   width: 100 * scale,
                   height: 100 * scale,
                 ),
-                SizedBox(height: 40 * scale),
+                SizedBox(height: 50 * scale),
                 // Text fields and other widgets follow
                 Text(
                   "Nous avons envoyé un code de vérification à votre numéro du téléphone",
@@ -76,8 +77,12 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                         BorderRadius.circular(15 * scale), // Rounded corners
                   ),
                   child: ElevatedButton(
-                    onPressed: () async {
-                      await HttpService.verifyotp(otpcode, context);
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DashboardPage()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.all(0),

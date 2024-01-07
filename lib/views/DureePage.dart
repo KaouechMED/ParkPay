@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'DashboardPage.dart';
+import 'SelectvoiturePage.dart';
 
 class DureePage extends StatefulWidget {
   @override
@@ -7,6 +8,15 @@ class DureePage extends StatefulWidget {
 }
 
 class _DureePageState extends State<DureePage> {
+  String selectedDuration = '';
+
+  // Function to handle the selection of a parking duration
+  void selectDuration(String duration) {
+    setState(() {
+      selectedDuration = duration;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -14,7 +24,7 @@ class _DureePageState extends State<DureePage> {
     double scale = screenWidth / referenceWidth;
     TextStyle myTextStyle = TextStyle(
       fontFamily: 'Inter',
-      fontSize: 24 * scale,
+      fontSize: 20 * scale,
       fontWeight: FontWeight.w600,
       height: 1.2125 * scale,
       color: Color(0xd30e73bc),
@@ -69,7 +79,7 @@ class _DureePageState extends State<DureePage> {
                 width: 163 * scale,
                 height: 30 * scale,
                 child: Text(
-                  "Durée de stationnement",
+                  "Durée",
                   textAlign: TextAlign.center,
                   style: myTextStyle,
                 ),
@@ -88,6 +98,42 @@ class _DureePageState extends State<DureePage> {
             ),
           ),
           SizedBox(height: 30 * scale),
+          ElevatedButton(
+            onPressed: () {
+              selectDuration('30 min');
+            },
+            style: ElevatedButton.styleFrom(
+              primary: selectedDuration == '30 min'
+                  ? Color(0xd30e73bc) // Change the color when selected
+                  : Color.fromARGB(210, 133, 193, 235), // Default color
+            ),
+            child: Text('30 min '),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              selectDuration('1 heure');
+            },
+            style: ElevatedButton.styleFrom(
+              primary: selectedDuration == '1 heure'
+                  ? Color(0xd30e73bc)
+                  : Color.fromARGB(210, 133, 193, 235),
+            ),
+            child: Text('1 heure'),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              selectDuration('2 heures');
+            },
+            style: ElevatedButton.styleFrom(
+              primary: selectedDuration == '2 heures'
+                  ? Color(0xd30e73bc)
+                  : Color.fromARGB(210, 133, 193, 235),
+            ),
+            child: Text('2 heures'),
+          ),
+          SizedBox(height: 40 * scale),
           Container(
             margin: EdgeInsets.fromLTRB(
                 66 * scale, 0 * scale, 85 * scale, 40 * scale),
@@ -101,7 +147,7 @@ class _DureePageState extends State<DureePage> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => DureePage()),
+                  MaterialPageRoute(builder: (context) => SelectvoiturePage()),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -116,7 +162,7 @@ class _DureePageState extends State<DureePage> {
                   'Continuer',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 18 * scale, // Scale font size based on fem
+                    fontSize: 14 * scale, // Scale font size based on fem
                     fontWeight: FontWeight.w400,
                     color: Color(0xffffffff),
                     fontFamily: 'Jomhuria',

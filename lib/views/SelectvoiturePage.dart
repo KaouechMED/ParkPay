@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'AjouteVoiturePage.dart';
 import 'DashboardPage.dart';
+import 'sucesspayed.dart';
 
-class VoiturePage extends StatelessWidget {
+class SelectvoiturePage extends StatefulWidget {
+  @override
+  _SelectvoitureState createState() => _SelectvoitureState();
+}
+
+class _SelectvoitureState extends State<SelectvoiturePage> {
+  String selectedvoiture = '';
+
+  // Function to handle the selection of a parking duration
+  void selectvoiture(String voiture) {
+    setState(() {
+      selectedvoiture = voiture;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -54,7 +69,7 @@ class VoiturePage extends StatelessWidget {
               padding: EdgeInsets.only(
                   top: 20 * scale), // Adjust the top padding as needed
               child: Text(
-                'Mes Voitures',
+                'Choisir voiture',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Inter',
@@ -83,13 +98,17 @@ class VoiturePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15 * scale),
                       ),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          selectvoiture('202 TN 1985');
+                        },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.all(0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15 * scale),
                           ),
-                          primary: Color.fromARGB(210, 133, 193, 235),
+                          primary: selectedvoiture == '202 TN 1985'
+                              ? Color(0xd30e73bc)
+                              : Color.fromARGB(210, 133, 193, 235),
                         ),
                         child: Center(
                           child: Text(
@@ -116,13 +135,17 @@ class VoiturePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15 * scale),
                       ),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          selectvoiture('198 TN 2001');
+                        },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.all(0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15 * scale),
                           ),
-                          primary: Color.fromARGB(210, 133, 193, 235),
+                          primary: selectedvoiture == '198 TN 2001'
+                              ? Color(0xd30e73bc)
+                              : Color.fromARGB(210, 133, 193, 235),
                         ),
                         child: Center(
                           child: Text(
@@ -159,7 +182,7 @@ class VoiturePage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => AjouteVoiturePage()),
+                  MaterialPageRoute(builder: (context) => Sucesspay()),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -171,7 +194,7 @@ class VoiturePage extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  "Ajouter une voiture",
+                  "Payer",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14 * scale,

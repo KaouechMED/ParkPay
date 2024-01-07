@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
               ),
               // Ellipse container
               Container(
-                width: screenWidth * 0.8, // 80% of screen width
+                width: screenWidth * 0.9, // 80% of screen width
                 height: 220 * scale, // Fixed height to maintain ellipse shape
                 decoration: BoxDecoration(
                   color: Colors.blue.shade100, // Light blue background color
@@ -45,10 +45,18 @@ class HomePage extends StatelessWidget {
                       height: 90 * scale, // Adjust the height as needed
                     ),
                     Text(
-                      'Payer Vos frais de Stationnement de manière pratique',
+                      'Payer Vos frais de Stationnement ',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 12 * scale, // Adjust the font size as needed
+                        fontSize: 14 * scale, // Adjust the font size as needed
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      'de manière pratique',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14 * scale, // Adjust the font size as needed
                         color: Colors.black,
                       ),
                     ),

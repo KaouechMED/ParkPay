@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:parkpay/service/http_service.dart';
+//import 'package:parkpay/service/http_service.dart';
+import 'package:parkpay/views/VerifyOTPPage.dart';
 import 'HomePage.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 20 * scale),
+                SizedBox(height: 120 * scale),
                 // Replace with your actual logo asset
 
                 Image.asset(
@@ -87,10 +88,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         BorderRadius.circular(15 * scale), // Rounded corners
                   ),
                   child: ElevatedButton(
-                    onPressed: () async {
-                      try {
-                        await HttpService.login(username, password, context);
-                      } catch (e) {}
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => VerifyOTPScreen()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.all(0),

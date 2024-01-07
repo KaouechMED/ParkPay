@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:parkpay/views/postinscrire.dart';
 import 'HomePage.dart';
-import '/service/http_service.dart';
+//import '/service/http_service.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -149,12 +150,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         BorderRadius.circular(15 * scale), // Rounded corners
                   ),
                   child: ElevatedButton(
-                    onPressed: () async {
-                      // Check if passwords match before registration
-                      if (password == passwordConfirm) {
-                        await HttpService.register(username, phone_number, cin,
-                            password, passwordConfirm, context);
-                      } else {}
+                    onPressed: ()  {
+                     Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => postinscrirePage()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.all(0),
