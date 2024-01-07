@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'AjouteVoiturePage.dart';
+import 'package:parkpay/views/PayPage.dart';
 import 'DashboardPage.dart';
-import 'sucesspayed.dart';
+import 'PayPage.dart';
 
 class SelectvoiturePage extends StatefulWidget {
   @override
@@ -182,7 +182,7 @@ class _SelectvoitureState extends State<SelectvoiturePage> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Sucesspay()),
+                  MaterialPageRoute(builder: (context) => PayPage()),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -194,7 +194,7 @@ class _SelectvoitureState extends State<SelectvoiturePage> {
               ),
               child: Center(
                 child: Text(
-                  "Payer",
+                  "Continuer",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14 * scale,

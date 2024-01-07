@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:parkpay/views/DashboardPage.dart';
-import 'LoginPage.dart';
-import 'AcceptPage.dart';
 
 class Sucesspay extends StatelessWidget {
   @override

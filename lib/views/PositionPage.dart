@@ -13,13 +13,13 @@ class _PositionPageState extends State<PositionPage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double referenceWidth = 360.0;
     double scale = screenWidth / referenceWidth;
-    TextStyle myTextStyle = TextStyle(
-      fontFamily: 'Inter',
-      fontSize: 24 * scale,
-      fontWeight: FontWeight.w600,
-      height: 1.2125 * scale,
-      color: Color(0xd30e73bc),
-    );
+    //TextStyle myTextStyle = TextStyle(
+      //fontFamily: 'Inter',
+      //fontSize: 24 * scale,
+      //fontWeight: FontWeight.w600,
+      //height: 1.2125 * scale,
+      //color: Color(0xd30e73bc),
+    //);
 
     return Scaffold(
       body: Column(

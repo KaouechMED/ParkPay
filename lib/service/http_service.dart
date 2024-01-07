@@ -31,25 +31,6 @@ class HttpService {
     } catch (e) {}
   }
 
-  static Future<void> verifyotp(String otpcode, context) async {
-    try {
-      final response = await http.post(
-        Uri.parse('$baseUrl/api/submit_otp'),
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode(<String, String>{'otp_code': otpcode}),
-      );
-
-      if (response.statusCode == 201) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => DashboardPage()),
-        );
-      }
-    } catch (e) {}
-  }
-
   static Future<void> register(
     String username,
     String phone_number,
